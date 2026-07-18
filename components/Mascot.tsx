@@ -1,16 +1,44 @@
-import { useId } from "react";
+import { useId, type CSSProperties } from "react";
 
-/** Mascota BIMO -- misma figura que ya existe en la página de BIMO Copy
- * (`dashboard/frontend/index.html` en el VPS): cuerpo redondeado, ojos
- * ovalados, pupilas, acento en la cabeza. Portada tal cual (mismo SVG,
- * mismas clases CSS), no es una mascota nueva -- regla explícita de
- * Sergio: "no crear otra mascota, usar la misma". `useId` evita ids de
- * gradiente duplicados cuando hay varias mascotas en la misma página. */
-export function Mascot({ size = 200, className = "" }: { size?: number; className?: string }) {
+/** Mascota BIMO -- misma figura base que ya existe en la página de BIMO
+ * Copy (mismo cuerpo, mismos ojos/pupilas), pero acepta un color de
+ * acento distinto por división -- "mismo concepto, evolucionado" (regla
+ * de Sergio: sin mascota nueva desde cero, sin repetir exactamente la
+ * misma identidad de Copy para todo el ecosistema). El acento define el
+ * punto de la cabeza y las pupilas vía custom properties, así cada
+ * división se distingue sin duplicar el SVG. */
+export function Mascot({
+  size = 200,
+  className = "",
+  accent,
+  glow,
+}: {
+  size?: number;
+  className?: string;
+  accent?: string;
+  glow?: string;
+}) {
   const gradientId = useId();
+  // sin accent/glow explícitos, no se fija ningún --accent local -- así
+  // hereda el del ancestro más cercano (raíz dorada por default, o el
+  // escopeado por una sección/tarjeta puntual) en vez de auto-referenciar
+  // la variable (lo que la invalida y cae a negro).
+  const style: CSSProperties | undefined =
+    accent || glow
+      ? ({
+          ...(accent ? { "--accent": accent } : {}),
+          ...(glow ? { "--accent-glow": glow } : {}),
+        } as CSSProperties)
+      : undefined;
 
   return (
-    <svg viewBox="0 0 200 200" width={size} height={size} className={`bimo-fig ${className}`}>
+    <svg
+      viewBox="0 0 200 200"
+      width={size}
+      height={size}
+      className={`bimo-fig ${className}`}
+      style={style}
+    >
       <defs>
         <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#e4e7ec" />

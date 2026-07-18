@@ -1,25 +1,40 @@
 import { Mascot } from "@/components/Mascot";
 import { Reveal } from "@/components/Reveal";
 import { DivisionCard } from "@/components/DivisionCard";
+import { Founders } from "@/components/Founders";
 
 /** Página principal del ecosistema BIMO -- capa de marca que conecta las
  * 3 divisiones (Shop / Copy / Studios), cada una independiente, sin
- * mezclar código ni lógica entre ellas. BIMO Copy no se toca: esta página
- * solo enlaza a lo que ya existe en el VPS. */
+ * mezclar código ni lógica entre ellas. BIMO Copy no se toca: esta
+ * página solo enlaza a lo que ya existe en el VPS, con SU PROPIA
+ * identidad (mascota en su azul real), no la identidad general de BIMO. */
 
 // TODO: actualizar cuando el dominio real quede conectado -- hoy apunta
 // directo a la IP del VPS porque todavía no hay DNS armado (ver Fase 5).
 const BIMO_COPY_URL = "http://200.234.228.59/";
 const BIMO_SHOP_URL = "https://bimoshop-storefront.vercel.app";
 
+// Paleta por división -- tokens ya existentes en design-tokens.css de
+// BIMO Copy (--warning: orange, --ai: purple), no inventados de cero.
+const SHOP_ACCENT = { accent: "#ff9500", glow: "rgba(255, 149, 0, 0.5)" };
+const COPY_ACCENT = { accent: "#4d7dff", glow: "rgba(77, 125, 255, 0.5)" };
+const STUDIOS_ACCENT = { accent: "#b07fff", glow: "rgba(176, 127, 255, 0.5)" };
+
 export default function Home() {
   return (
     <main>
-      <div className="bg-ambient" />
+      {/* ============ HERO -- BIMO raíz, dorado ============ */}
+      <section className="relative flex min-h-[92vh] flex-col items-center justify-center gap-7 overflow-hidden px-6 text-center">
+        <div className="hero-ambient">
+          <div className="hero-grid" />
+        </div>
 
-      {/* ============ HERO ============ */}
-      <section className="relative flex min-h-[92vh] flex-col items-center justify-center gap-7 px-6 text-center">
-        <Mascot size={200} />
+        <div className="relative flex items-center justify-center">
+          <span className="orbit-ring r2" />
+          <span className="orbit-ring r1" />
+          <Mascot size={210} />
+        </div>
+
         <h1 className="wordmark display flex text-6xl leading-none sm:text-7xl">
           B
           <span className="i">
@@ -28,7 +43,7 @@ export default function Home() {
           </span>
           MO
         </h1>
-        <p className="max-w-md text-lg text-[var(--ink-muted)]">
+        <p className="max-w-lg text-lg text-[var(--ink-muted)]">
           Un ecosistema de tecnología inteligente — comercio, automatización e inteligencia artificial, construidos
           con el mismo criterio.
         </p>
@@ -61,9 +76,10 @@ export default function Home() {
         </Reveal>
         <Reveal delay={0.16}>
           <p className="mt-5 text-base leading-relaxed text-[var(--ink-muted)]">
-            BIMO agrupa productos, sistemas inteligentes y automatización bajo una misma disciplina de ingeniería.
-            Cada división resuelve un problema distinto — comercio, análisis, desarrollo a medida — pero todas
-            comparten la misma forma de pensar: observar, construir, medir y mejorar.
+            BIMO es un ecosistema tecnológico que crea productos, sistemas inteligentes y automatizaciones mediante
+            inteligencia artificial. Desarrolla comercio digital, automatización, bots inteligentes, sistemas de
+            análisis y herramientas tecnológicas — cada división resuelve un problema distinto, pero todas comparten
+            la misma disciplina: observar, construir, medir y mejorar.
           </p>
         </Reveal>
       </section>
@@ -73,7 +89,7 @@ export default function Home() {
         <Reveal>
           <div className="text-center">
             <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--accent)]">El ecosistema</span>
-            <h2 className="display mt-4 text-3xl text-[var(--ink)] sm:text-4xl">Tres divisiones, una marca</h2>
+            <h2 className="display mt-4 text-3xl text-[var(--ink)] sm:text-4xl">Tres divisiones, una raíz</h2>
           </div>
         </Reveal>
 
@@ -81,24 +97,27 @@ export default function Home() {
           <Reveal delay={0.05}>
             <DivisionCard
               title="BIMO Shop"
-              tagline="Productos inteligentes para mejorar tu día a día."
+              tagline="Productos inteligentes diseñados para mejorar tu experiencia diaria. Catálogo elegante, compra premium."
               href={BIMO_SHOP_URL}
               external
+              {...SHOP_ACCENT}
             />
           </Reveal>
           <Reveal delay={0.1}>
             <DivisionCard
               title="BIMO Copy"
-              tagline="Un sistema inteligente diseñado para automatización y análisis."
+              tagline="Un sistema inteligente de automatización y análisis para trading y ejecución basada en datos."
               href={BIMO_COPY_URL}
               external
+              {...COPY_ACCENT}
             />
           </Reveal>
           <Reveal delay={0.15}>
             <DivisionCard
               title="BIMO Studios"
-              tagline="Construimos bots, IA y automatizaciones para empresas."
+              tagline="Construimos bots, inteligencia artificial y automatizaciones para empresas."
               href="#studios"
+              {...STUDIOS_ACCENT}
             />
           </Reveal>
           <Reveal delay={0.2}>
@@ -107,10 +126,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ============ BIMO STUDIOS ============ */}
-      <section id="studios" className="mx-auto max-w-2xl px-6 py-24 text-center">
+      {/* ============ BIMO STUDIOS -- violeta, identidad propia ============ */}
+      <section
+        id="studios"
+        className="mx-auto max-w-2xl px-6 py-24 text-center"
+        style={{ "--accent": STUDIOS_ACCENT.accent, "--accent-glow": STUDIOS_ACCENT.glow } as React.CSSProperties}
+      >
         <Reveal>
-          <Mascot size={130} className="mx-auto" />
+          <Mascot size={130} className="mx-auto" {...STUDIOS_ACCENT} />
         </Reveal>
         <Reveal delay={0.08}>
           <span className="mt-6 block text-xs font-bold uppercase tracking-[0.16em] text-[var(--accent)]">
@@ -141,14 +164,30 @@ export default function Home() {
           </div>
         </Reveal>
         <Reveal delay={0.32}>
+          <div className="mt-10">
+            <p className="text-xs uppercase tracking-wide text-[var(--ink-faint)]">Ya construimos</p>
+            <div className="mt-3 flex flex-wrap justify-center gap-2">
+              <span className="rounded-full border px-3 py-1 text-xs font-semibold" style={{ borderColor: SHOP_ACCENT.accent, color: SHOP_ACCENT.accent }}>
+                BIMO Shop
+              </span>
+              <span className="rounded-full border px-3 py-1 text-xs font-semibold" style={{ borderColor: COPY_ACCENT.accent, color: COPY_ACCENT.accent }}>
+                BIMO Copy
+              </span>
+            </div>
+          </div>
+        </Reveal>
+        <Reveal delay={0.38}>
           <a
             href="mailto:hola@bimo.ai"
-            className="mt-10 inline-block rounded-full border border-[var(--accent)] bg-[rgba(77,125,255,0.12)] px-7 py-3 text-sm font-semibold text-[var(--ink)] transition-colors hover:bg-[rgba(77,125,255,0.2)]"
+            className="mt-10 inline-block rounded-full border px-7 py-3 text-sm font-semibold text-[var(--ink)] transition-colors"
+            style={{ borderColor: "var(--accent)", background: "rgba(176, 127, 255, 0.12)" }}
           >
             ¿Querés crear una solución tecnológica para tu empresa?
           </a>
         </Reveal>
       </section>
+
+      <Founders />
 
       {/* ============ FOOTER ============ */}
       <footer className="border-t border-[var(--rule)] px-6 py-12 text-center">

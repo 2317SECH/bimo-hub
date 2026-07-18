@@ -11,9 +11,13 @@
   --bimo-recess: #c7cbd3;
   --bimo-foot: #999fab;
   --bimo-shadow: rgba(0, 0, 0, 0.5);
-  --accent: #4d7dff;
-  --accent-dim: #2f4590;
-  --accent-glow: rgba(77, 125, 255, 0.5);
+  /* BIMO raíz -- dorado, distinto del azul de BIMO Copy a propósito
+     (misma mascota, evolucionada: "núcleo del ecosistema" en vez de
+     repetir la identidad de una sola división para todo BIMO). Cada
+     división después escopea su propio --accent localmente. */
+  --accent: #f0a93a;
+  --accent-dim: #7a5a1e;
+  --accent-glow: rgba(240, 169, 58, 0.55);
 }
 
 * {
@@ -119,4 +123,63 @@ body {
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 22px 4px var(--accent-glow);
+}
+
+/* ---------- ambiente del hero: grilla + glow animados + anillos
+   orbitando la mascota. Reemplaza el fondo plano por una sensación de
+   "núcleo tecnológico", sin necesitar video ni assets nuevos. ---------- */
+.hero-ambient {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hero-ambient::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(ellipse 60% 55% at 50% 38%, var(--accent-glow), transparent 68%);
+  opacity: 0.55;
+  animation: heroGlowPulse 6s ease-in-out infinite;
+}
+@keyframes heroGlowPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(1.06); }
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(240, 169, 58, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(240, 169, 58, 0.09) 1px, transparent 1px);
+  background-size: 42px 42px;
+  -webkit-mask-image: radial-gradient(ellipse 55% 60% at 50% 34%, #000 0%, transparent 72%);
+  mask-image: radial-gradient(ellipse 55% 60% at 50% 34%, #000 0%, transparent 72%);
+  animation: gridDrift 30s linear infinite;
+}
+@keyframes gridDrift {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 84px 84px, 84px 84px; }
+}
+
+.orbit-ring {
+  position: absolute;
+  border: 1px solid var(--accent-dim);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+@keyframes orbitSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.orbit-ring.r1 {
+  inset: -34px;
+  animation: orbitSpin 22s linear infinite;
+  border-style: dashed;
+}
+.orbit-ring.r2 {
+  inset: -64px;
+  animation: orbitSpin 34s linear infinite reverse;
+  opacity: 0.3;
 }
