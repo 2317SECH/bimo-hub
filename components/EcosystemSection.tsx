@@ -8,7 +8,10 @@ import { DivisionCard } from "./DivisionCard";
 import { playChime } from "@/lib/sound";
 
 const BIMO_COPY_URL = "http://200.234.228.59/";
-const BIMO_SHOP_URL = "https://bimoshop-storefront.vercel.app";
+// Directo a /tienda (catálogo completo, 49 productos), no a la Home del
+// storefront -- la Home muestra solo 5 destacados a propósito, pero acá
+// la gente entra buscando ver todo el catálogo de una.
+const BIMO_SHOP_URL = "https://bimoshop-storefront.vercel.app/tienda";
 
 const SHOP_ACCENT = { accent: "#d4a017", glow: "rgba(212, 160, 23, 0.5)" };
 const COPY_ACCENT = { accent: "#4d7dff", glow: "rgba(77, 125, 255, 0.5)" };
