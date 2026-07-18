@@ -163,6 +163,27 @@ body {
   100% { background-position: 84px 84px, 84px 84px; }
 }
 
+/* ---------- ambiente por sección: cada bloque de la página usa el color
+   de SU propio --accent (dorado por default, o el escopeado localmente
+   como Studios en violeta) -- nada de negro plano parejo en todas las
+   secciones. Poner en el primer hijo de cualquier <section
+   className="relative overflow-hidden">. ---------- */
+.section-glow {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.section-glow::before {
+  content: "";
+  position: absolute;
+  inset: -15%;
+  background: radial-gradient(ellipse 70% 60% at 50% 0%, var(--accent-glow), transparent 70%);
+  opacity: 0.28;
+  animation: heroGlowPulse 8s ease-in-out infinite;
+}
+
 .orbit-ring {
   position: absolute;
   border: 1px solid var(--accent-dim);

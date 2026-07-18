@@ -15,6 +15,8 @@ export function DivisionCard({
   soon = false,
   accent,
   glow,
+  onClick,
+  actionLabel = "Entrar →",
 }: {
   title: string;
   tagline: string;
@@ -23,6 +25,10 @@ export function DivisionCard({
   soon?: boolean;
   accent?: string;
   glow?: string;
+  /** Si se pasa, la tarjeta es un botón (no navega) -- ej. Studios, que
+   * abre/cierra su panel en la misma página en vez de ir a otra URL. */
+  onClick?: () => void;
+  actionLabel?: string;
 }) {
   const content = (
     <div
@@ -58,13 +64,23 @@ export function DivisionCard({
           className="relative text-xs font-semibold uppercase tracking-wide opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           style={{ color: accent ?? "var(--accent)" }}
         >
-          Entrar →
+          {actionLabel}
         </span>
       )}
     </div>
   );
 
-  if (soon || !href) return content;
+  if (soon) return content;
+
+  if (onClick) {
+    return (
+      <button type="button" onClick={onClick} className="block h-full w-full text-left">
+        {content}
+      </button>
+    );
+  }
+
+  if (!href) return content;
 
   return (
     <Link href={href} target={external ? "_blank" : undefined} rel={external ? "noopener" : undefined} className="block h-full">
