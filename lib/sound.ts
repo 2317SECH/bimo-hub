@@ -24,11 +24,20 @@ function ctx(): AudioContext {
  * que corre en un IntersectionObserver -- no cuenta como gesto de usuario
  * para el navegador, así que el AudioContext queda "suspended" y ese
  * primer sonido se pierde o llega tarde (sobre todo en mobile). Se
- * desbloquea igual que un <audio> autoplay: crear/retomar el contexto en
- * el primer toque/click real, antes de que un chime lo necesite. */
+ * desbloquea igual que un <audio> autoplay: en el primer toque/click real
+ * de toda la página (antes de que cualquier chime lo necesite), se crea
+ * el contexto y se reproduce un buffer silencioso de forma SÍNCRONA
+ * dentro del gesto -- `resume()` solo no alcanza en iOS Safari, necesita
+ * un `start()` real en el mismo tick del gesto para desbloquear de
+ * verdad (truco estándar de unlock de Web Audio en iOS). */
 if (typeof window !== "undefined") {
   const unlock = () => {
-    ctx();
+    const c = ctx();
+    const buffer = c.createBuffer(1, 1, 22050);
+    const source = c.createBufferSource();
+    source.buffer = buffer;
+    source.connect(c.destination);
+    source.start(0);
     window.removeEventListener("pointerdown", unlock);
     window.removeEventListener("touchstart", unlock);
     window.removeEventListener("keydown", unlock);
