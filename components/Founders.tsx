@@ -39,8 +39,7 @@ export function Founders() {
           <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--accent)]">Quiénes somos</span>
           <h2 className="display mt-4 text-3xl text-[var(--ink)] sm:text-4xl">Un equipo, no un script</h2>
           <p className="mx-auto mt-4 max-w-md text-sm text-[var(--ink-muted)]">
-            BIMO no es solo software — es la visión, el desarrollo y la colaboración de un equipo real. Fotos reales
-            del equipo, pendientes de que Sergio las suministre.
+            BIMO no es solo software — es la visión, el desarrollo y la colaboración de un equipo real.
           </p>
         </div>
       </Reveal>

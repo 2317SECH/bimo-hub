@@ -45,7 +45,7 @@ export default function Home() {
           href="#ecosistema"
           className="mt-2 flex flex-col items-center gap-2 text-sm text-[var(--ink-muted)] transition-colors hover:text-[var(--ink)]"
         >
-          <span>Conocé el ecosistema</span>
+          <span>Conoce el ecosistema</span>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="animate-bounce">
             <path
               d="M3 6L8 11L13 6"
@@ -66,7 +66,7 @@ export default function Home() {
         </Reveal>
         <Reveal delay={0.08}>
           <h2 className="display mt-4 text-3xl text-[var(--ink)] sm:text-4xl">
-            Una empresa que construye tecnología, no una sola cosa
+            Una empresa que construye tecnología
           </h2>
         </Reveal>
         <Reveal delay={0.16}>

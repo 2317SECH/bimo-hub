@@ -20,6 +20,24 @@ function ctx(): AudioContext {
   return audioCtx;
 }
 
+/** Los primeros chimes disparan por scroll-into-view (Framer whileInView),
+ * que corre en un IntersectionObserver -- no cuenta como gesto de usuario
+ * para el navegador, así que el AudioContext queda "suspended" y ese
+ * primer sonido se pierde o llega tarde (sobre todo en mobile). Se
+ * desbloquea igual que un <audio> autoplay: crear/retomar el contexto en
+ * el primer toque/click real, antes de que un chime lo necesite. */
+if (typeof window !== "undefined") {
+  const unlock = () => {
+    ctx();
+    window.removeEventListener("pointerdown", unlock);
+    window.removeEventListener("touchstart", unlock);
+    window.removeEventListener("keydown", unlock);
+  };
+  window.addEventListener("pointerdown", unlock, { once: true, passive: true });
+  window.addEventListener("touchstart", unlock, { once: true, passive: true });
+  window.addEventListener("keydown", unlock, { once: true });
+}
+
 function note(freq: number, t0: number, dur: number, peak = 0.14) {
   const c = ctx();
   const osc = c.createOscillator();
