@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0d0e12;
+  --bg-elevated: #17191f;
+  --bg-sunken: #0a0b0e;
+  --rule: #24272f;
+  --ink: #f4f3ef;
+  --ink-muted: #999fac;
+  --ink-faint: #565c68;
+  --bimo-recess: #c7cbd3;
+  --bimo-foot: #999fab;
+  --bimo-shadow: rgba(0, 0, 0, 0.5);
+  --accent: #4d7dff;
+  --accent-dim: #2f4590;
+  --accent-glow: rgba(77, 125, 255, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans), "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- mascota BIMO -- misma identidad que "La Casa de BIMO" (BIMO
+   Copy), portada tal cual: mismo cuerpo, mismos ojos/pupilas, misma
+   animacion. No es una mascota nueva, es la misma reutilizada. ---------- */
+.bimo-body {
+  fill: url(#bodyGradient);
+}
+.bimo-recess {
+  fill: var(--bimo-recess);
+  opacity: 0.55;
+}
+.bimo-foot {
+  fill: var(--bimo-foot);
+}
+.bimo-eye {
+  fill: #2b2e36;
+}
+.bimo-pupil {
+  fill: var(--accent);
+}
+.bimo-accent {
+  fill: var(--accent);
+  filter: drop-shadow(0 0 6px var(--accent-glow));
+}
+
+@keyframes bimoBreathe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.bimo-fig {
+  animation: bimoBreathe 4.2s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+@keyframes bimoBlink {
+  0%, 88%, 100% { transform: scaleY(1); }
+  93% { transform: scaleY(0.08); }
+}
+.bimo-fig .bimo-eye {
+  animation: bimoBlink 5.5s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes bimoLookAround {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2.5px); }
+  60% { transform: translateX(2.5px); }
+  80% { transform: translateX(0); }
+}
+.bimo-pupil-idle {
+  animation: bimoLookAround 6.5s ease-in-out infinite;
+}
+
+.display {
+  font-family: ui-rounded, "SF Pro Rounded", "Segoe UI Rounded", "Segoe UI", system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.wordmark .i {
+  position: relative;
+  display: inline-block;
+  width: 0.34em;
+}
+.wordmark .i .stem {
+  display: block;
+  width: 0.13em;
+  height: 0.62em;
+  margin: 0.28em auto 0;
+  background: var(--ink);
+  border-radius: 999px;
+}
+.wordmark .i .dot {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.22em;
+  height: 0.22em;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 22px 4px var(--accent-glow);
+}
