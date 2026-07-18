@@ -149,12 +149,15 @@ export function EcosystemSection() {
               </div>
 
               <a
-                href="mailto:hola@bimo.ai"
+                href="mailto:sergioquinterop996@gmail.com"
                 className="mt-10 inline-block rounded-full border px-7 py-3 text-sm font-semibold text-[var(--ink)] transition-colors"
                 style={{ borderColor: "var(--accent)", background: "rgba(176, 127, 255, 0.12)" }}
               >
                 ¿Querés crear una solución tecnológica para tu empresa?
               </a>
+              <p className="mt-4 text-xs text-[var(--ink-faint)]">
+                sergioquinterop996@gmail.com · +57 313 668 2674
+              </p>
             </div>
           </motion.section>
         )}
