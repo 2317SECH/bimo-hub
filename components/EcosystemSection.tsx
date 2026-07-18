@@ -57,6 +57,7 @@ export function EcosystemSection() {
             <DivisionCard
               title="BIMO Shop"
               tagline="Productos inteligentes diseñados para mejorar tu experiencia diaria. Catálogo elegante, compra premium."
+              note="Catálogo en rotación — nuevas piezas cada 1 a 2 semanas"
               href={BIMO_SHOP_URL}
               external
               {...SHOP_ACCENT}

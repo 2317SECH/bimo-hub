@@ -10,6 +10,7 @@ import { Mascot } from "./Mascot";
 export function DivisionCard({
   title,
   tagline,
+  note,
   href,
   external = false,
   soon = false,
@@ -20,6 +21,10 @@ export function DivisionCard({
 }: {
   title: string;
   tagline: string;
+  /** Línea chica extra, ej. "Catálogo en rotación cada 1 a 2 semanas" en
+   * BIMO Shop -- mismo texto que ya está en storefront/tienda, no un
+   * dato nuevo inventado acá. */
+  note?: string;
   href?: string;
   external?: boolean;
   soon?: boolean;
@@ -54,6 +59,11 @@ export function DivisionCard({
       <div className="relative">
         <h3 className="display text-xl text-[var(--ink)]">{title}</h3>
         <p className="mt-2 max-w-[26ch] text-sm leading-relaxed text-[var(--ink-muted)]">{tagline}</p>
+        {note && (
+          <p className="mt-2 text-[11px] font-semibold uppercase tracking-wide" style={{ color: accent ?? "var(--accent)" }}>
+            {note}
+          </p>
+        )}
       </div>
       {soon ? (
         <span className="rounded-full border border-[var(--rule)] bg-[var(--bg-sunken)] px-3 py-1 text-[11px] uppercase tracking-wide text-[var(--ink-faint)]">
