@@ -14,9 +14,12 @@ import { Founders } from "@/components/Founders";
 const BIMO_COPY_URL = "http://200.234.228.59/";
 const BIMO_SHOP_URL = "https://bimoshop-storefront.vercel.app";
 
-// Paleta por división -- tokens ya existentes en design-tokens.css de
-// BIMO Copy (--warning: orange, --ai: purple), no inventados de cero.
-const SHOP_ACCENT = { accent: "#ff9500", glow: "rgba(255, 149, 0, 0.5)" };
+// Paleta por división -- Shop en dorado/amarillo (comercio, valor,
+// moneda -- mismo espíritu que el ámbar ya usado en storefront/), Copy
+// conserva su azul real, Studios en violeta (--ai en design-tokens.css
+// de BIMO Copy). Root (hero) usa un dorado más cálido, distinto del de
+// Shop, para que no se confundan cuando aparecen juntos en pantalla.
+const SHOP_ACCENT = { accent: "#d4a017", glow: "rgba(212, 160, 23, 0.5)" };
 const COPY_ACCENT = { accent: "#4d7dff", glow: "rgba(77, 125, 255, 0.5)" };
 const STUDIOS_ACCENT = { accent: "#b07fff", glow: "rgba(176, 127, 255, 0.5)" };
 
@@ -32,7 +35,7 @@ export default function Home() {
         <div className="relative flex items-center justify-center">
           <span className="orbit-ring r2" />
           <span className="orbit-ring r1" />
-          <Mascot size={210} />
+          <Mascot size={210} interactive />
         </div>
 
         <h1 className="wordmark display flex text-6xl leading-none sm:text-7xl">
@@ -93,7 +96,7 @@ export default function Home() {
           </div>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-6 sm:grid-cols-3">
           <Reveal delay={0.05}>
             <DivisionCard
               title="BIMO Shop"
@@ -119,9 +122,6 @@ export default function Home() {
               href="#studios"
               {...STUDIOS_ACCENT}
             />
-          </Reveal>
-          <Reveal delay={0.2}>
-            <DivisionCard title="BIMO Cash" tagline="Próximo proyecto del ecosistema." soon />
           </Reveal>
         </div>
       </section>
@@ -151,9 +151,12 @@ export default function Home() {
             y proyectos que necesitan bots, inteligencia artificial y automatización a medida.
           </p>
         </Reveal>
+        <Reveal delay={0.23}>
+          <p className="mt-8 text-xs uppercase tracking-wide text-[var(--ink-faint)]">Lo que hacemos</p>
+        </Reveal>
         <Reveal delay={0.26}>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            {["Bots", "Inteligencia artificial", "Automatizaciones", "Soluciones personalizadas"].map((p) => (
+          <div className="mt-3 flex flex-wrap justify-center gap-3">
+            {["Creación de bots", "Automatizaciones empresariales", "Sistemas personalizados", "Inteligencia artificial"].map((p) => (
               <span
                 key={p}
                 className="rounded-full border border-[var(--rule)] bg-[var(--bg-elevated)] px-4 py-2 text-sm text-[var(--ink-muted)]"
@@ -165,13 +168,16 @@ export default function Home() {
         </Reveal>
         <Reveal delay={0.32}>
           <div className="mt-10">
-            <p className="text-xs uppercase tracking-wide text-[var(--ink-faint)]">Ya construimos</p>
+            <p className="text-xs uppercase tracking-wide text-[var(--ink-faint)]">Proyectos creados</p>
             <div className="mt-3 flex flex-wrap justify-center gap-2">
+              <span className="rounded-full border px-3 py-1 text-xs font-semibold" style={{ borderColor: COPY_ACCENT.accent, color: COPY_ACCENT.accent }}>
+                BIMO Copy
+              </span>
               <span className="rounded-full border px-3 py-1 text-xs font-semibold" style={{ borderColor: SHOP_ACCENT.accent, color: SHOP_ACCENT.accent }}>
                 BIMO Shop
               </span>
-              <span className="rounded-full border px-3 py-1 text-xs font-semibold" style={{ borderColor: COPY_ACCENT.accent, color: COPY_ACCENT.accent }}>
-                BIMO Copy
+              <span className="rounded-full border border-[var(--rule)] px-3 py-1 text-xs font-semibold text-[var(--ink-faint)]">
+                BIMO Cash · Próximamente
               </span>
             </div>
           </div>
