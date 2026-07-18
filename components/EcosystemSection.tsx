@@ -7,7 +7,9 @@ import { Reveal } from "./Reveal";
 import { DivisionCard } from "./DivisionCard";
 import { playChime } from "@/lib/sound";
 
-const BIMO_COPY_URL = "http://200.234.228.59/";
+// El VPS (200.234.228.59) es donde corre BIMO Copy 24/7 (backend, bot,
+// login) -- pero el host público real es este, con HTTPS de verdad.
+const BIMO_COPY_URL = "https://bimoai.netlify.app/";
 // Directo a /tienda (catálogo completo, 49 productos), no a la Home del
 // storefront -- la Home muestra solo 5 destacados a propósito, pero acá
 // la gente entra buscando ver todo el catálogo de una.
