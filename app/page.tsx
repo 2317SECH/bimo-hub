@@ -2,6 +2,7 @@ import { Mascot } from "@/components/Mascot";
 import { Reveal } from "@/components/Reveal";
 import { DivisionCard } from "@/components/DivisionCard";
 import { Founders } from "@/components/Founders";
+import { SoundToggle } from "@/components/SoundToggle";
 
 /** Página principal del ecosistema BIMO -- capa de marca que conecta las
  * 3 divisiones (Shop / Copy / Studios), cada una independiente, sin
@@ -26,6 +27,8 @@ const STUDIOS_ACCENT = { accent: "#b07fff", glow: "rgba(176, 127, 255, 0.5)" };
 export default function Home() {
   return (
     <main>
+      <SoundToggle />
+
       {/* ============ HERO -- BIMO raíz, dorado ============ */}
       <section className="relative flex min-h-[92vh] flex-col items-center justify-center gap-7 overflow-hidden px-6 text-center">
         <div className="hero-ambient">
@@ -69,7 +72,7 @@ export default function Home() {
 
       {/* ============ QUE ES BIMO ============ */}
       <section className="mx-auto max-w-2xl px-6 py-24 text-center">
-        <Reveal>
+        <Reveal chime={[[392.0, 0], [587.33, 0.1]]}>
           <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--accent)]">Qué es BIMO</span>
         </Reveal>
         <Reveal delay={0.08}>
@@ -89,7 +92,7 @@ export default function Home() {
 
       {/* ============ ECOSISTEMA ============ */}
       <section id="ecosistema" className="mx-auto max-w-5xl px-6 py-16">
-        <Reveal>
+        <Reveal chime={[[523.25, 0], [783.99, 0.12]]}>
           <div className="text-center">
             <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--accent)]">El ecosistema</span>
             <h2 className="display mt-4 text-3xl text-[var(--ink)] sm:text-4xl">Tres divisiones, una raíz</h2>
@@ -132,7 +135,7 @@ export default function Home() {
         className="mx-auto max-w-2xl px-6 py-24 text-center"
         style={{ "--accent": STUDIOS_ACCENT.accent, "--accent-glow": STUDIOS_ACCENT.glow } as React.CSSProperties}
       >
-        <Reveal>
+        <Reveal chime={[[440.0, 0], [659.25, 0.1]]}>
           <Mascot size={130} className="mx-auto" {...STUDIOS_ACCENT} />
         </Reveal>
         <Reveal delay={0.08}>

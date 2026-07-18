@@ -34,7 +34,7 @@ const FOUNDERS = [
 export function Founders() {
   return (
     <section className="mx-auto max-w-5xl px-6 py-24">
-      <Reveal>
+      <Reveal chime={[[349.23, 0]]}>
         <div className="text-center">
           <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--accent)]">Quiénes somos</span>
           <h2 className="display mt-4 text-3xl text-[var(--ink)] sm:text-4xl">Un equipo, no un script</h2>
