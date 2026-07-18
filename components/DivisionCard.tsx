@@ -58,7 +58,7 @@ export function DivisionCard({
       />
       <div className="relative">
         <h3 className="display text-xl text-[var(--ink)]">{title}</h3>
-        <p className="mt-2 max-w-[26ch] text-sm leading-relaxed text-[var(--ink-muted)]">{tagline}</p>
+        <p className="mx-auto mt-2 max-w-[26ch] text-sm leading-relaxed text-[var(--ink-muted)]">{tagline}</p>
         {note && (
           <p className="mt-2 text-[11px] font-semibold uppercase tracking-wide" style={{ color: accent ?? "var(--accent)" }}>
             {note}
