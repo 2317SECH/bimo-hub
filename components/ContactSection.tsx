@@ -3,8 +3,9 @@
 import { useState, type FormEvent } from "react";
 import { Reveal } from "./Reveal";
 
-const CONTACT_EMAIL = "sergioquinterop996@gmail.com";
 const CONTACT_PHONE = "+57 313 668 2674";
+const CONTACT_PHONE_TEL = "+573136682674";
+const INSTAGRAM_URL = "https://www.instagram.com/pagxstudio/";
 
 // Sin backend propio (bimo-hub es frontend puro en Vercel) -- el form
 // postea directo a Formspree, sin necesitar servidor. Si no hay ID
@@ -13,6 +14,31 @@ const CONTACT_PHONE = "+57 313 668 2674";
 const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID;
 
 type Status = "idle" | "sending" | "success" | "error";
+
+/** Teléfono e Instagram como links reales (tel:/https:), no texto
+ * suelto para copiar y pegar -- mismo criterio que el mailto de
+ * arriba. Se usa tanto en el fallback (sin Formspree) como debajo del
+ * form real, así el contacto directo siempre está a mano. */
+function ContactPills() {
+  return (
+    <div className="flex flex-wrap items-center justify-center gap-3 text-sm">
+      <a
+        href={`tel:${CONTACT_PHONE_TEL}`}
+        className="rounded-full border border-[var(--rule)] px-4 py-2 text-[var(--ink-muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--ink)]"
+      >
+        {CONTACT_PHONE}
+      </a>
+      <a
+        href={INSTAGRAM_URL}
+        target="_blank"
+        rel="noopener"
+        className="rounded-full border border-[var(--rule)] px-4 py-2 text-[var(--ink-muted)] transition-colors hover:border-[var(--accent)] hover:text-[var(--ink)]"
+      >
+        Instagram
+      </a>
+    </div>
+  );
+}
 
 export function ContactSection() {
   const [status, setStatus] = useState<Status>("idle");
@@ -52,7 +78,7 @@ export function ContactSection() {
 
       <Reveal delay={0.1}>
         {FORMSPREE_ID ? (
-          <form onSubmit={handleSubmit} className="card-surface mx-auto mt-10 flex flex-col gap-4 rounded-2xl p-8 text-left">
+          <form onSubmit={handleSubmit} className="card-surface mx-auto mt-10 flex flex-col gap-4 rounded-2xl p-8 text-left" id="contact-form">
             <div>
               <label htmlFor="name" className="text-xs font-semibold uppercase tracking-wide text-[var(--ink-faint)]">
                 Nombre
@@ -103,24 +129,23 @@ export function ContactSection() {
               <p className="text-sm text-[var(--ink-muted)]">Gracias, te respondemos pronto.</p>
             )}
             {status === "error" && (
-              <p className="text-sm text-[var(--ink-muted)]">
-                Algo falló. Escribinos directo a{" "}
-                <a href={`mailto:${CONTACT_EMAIL}`} className="text-[var(--accent)]">
-                  {CONTACT_EMAIL}
-                </a>
-                .
-              </p>
+              <p className="text-sm text-[var(--ink-muted)]">Algo falló, probá de nuevo o escribinos por Instagram.</p>
             )}
           </form>
         ) : (
-          <div className="card-surface mx-auto mt-10 rounded-2xl p-8">
-            <a href={`mailto:${CONTACT_EMAIL}`} className="text-lg font-semibold text-[var(--ink)] hover:text-[var(--accent)]">
-              {CONTACT_EMAIL}
-            </a>
-            <p className="mt-2 text-sm text-[var(--ink-faint)]">{CONTACT_PHONE}</p>
+          <div className="card-surface mx-auto mt-10 flex flex-col items-center gap-4 rounded-2xl p-8">
+            <ContactPills />
           </div>
         )}
       </Reveal>
+
+      {FORMSPREE_ID && (
+        <Reveal delay={0.16}>
+          <div className="mt-6 flex justify-center">
+            <ContactPills />
+          </div>
+        </Reveal>
+      )}
     </section>
   );
 }
