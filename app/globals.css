@@ -69,8 +69,8 @@ body {
 }
 
 @keyframes bimoBreathe {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(1.6deg); }
 }
 .bimo-fig {
   animation: bimoBreathe 4.2s ease-in-out infinite;
@@ -203,4 +203,50 @@ body {
   inset: -64px;
   animation: orbitSpin 34s linear infinite reverse;
   opacity: 0.3;
+}
+
+/* ---------- partículas flotantes muy lentas -- casi imperceptibles,
+   solo agregan profundidad de fondo, nunca deben notarse "en primer
+   plano". Puestas dentro de .hero-ambient o .section-glow. ---------- */
+.bg-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.bg-particles span {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.18;
+  filter: blur(0.5px);
+  animation: particleDrift 26s ease-in-out infinite;
+}
+.bg-particles span:nth-child(1) { left: 12%; top: 20%; animation-duration: 24s; animation-delay: -2s; }
+.bg-particles span:nth-child(2) { left: 82%; top: 15%; animation-duration: 30s; animation-delay: -9s; }
+.bg-particles span:nth-child(3) { left: 70%; top: 70%; animation-duration: 27s; animation-delay: -14s; }
+.bg-particles span:nth-child(4) { left: 22%; top: 78%; animation-duration: 33s; animation-delay: -5s; }
+@keyframes particleDrift {
+  0%, 100% { transform: translate(0, 0); opacity: 0.1; }
+  50% { transform: translate(14px, -22px); opacity: 0.24; }
+}
+
+/* ---------- superficie compartida de tarjetas -- mismo lenguaje visual
+   en Division cards, Founders y el form de contacto (punto 17: nunca
+   dos tratamientos distintos de "tarjeta" en el mismo sitio). Borde muy
+   fino, sombra suave en reposo, elevación + sombra más marcada en
+   hover, un highlight superior sutilísimo para sensación de objeto
+   físico en vez de un rectángulo plano. ---------- */
+.card-surface {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: var(--bg-elevated);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 12px 24px rgba(0, 0, 0, 0.22);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.card-surface:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 24px 48px rgba(0, 0, 0, 0.4);
 }

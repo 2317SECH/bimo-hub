@@ -37,10 +37,8 @@ export function DivisionCard({
 }) {
   const content = (
     <div
-      className={`group relative flex h-full flex-col items-center gap-5 overflow-hidden rounded-2xl border p-8 text-center transition-all duration-300 ${
-        soon
-          ? "border-[var(--rule)] bg-[var(--bg-elevated)]/40 opacity-55"
-          : "border-[var(--rule)] bg-[var(--bg-elevated)] hover:-translate-y-1.5 hover:shadow-[0_24px_48px_rgba(0,0,0,0.4)]"
+      className={`card-surface group relative flex h-full flex-col items-center gap-5 overflow-hidden rounded-2xl p-8 text-center ${
+        soon ? "opacity-55" : ""
       }`}
       style={!soon ? ({ "--hover-accent": accent } as React.CSSProperties) : undefined}
     >
@@ -57,7 +55,7 @@ export function DivisionCard({
         className={soon ? "" : "relative transition-transform duration-300 group-hover:scale-105"}
       />
       <div className="relative">
-        <h3 className="display text-xl text-[var(--ink)]">{title}</h3>
+        <h3 className="text-xl font-bold tracking-tight text-[var(--ink)]">{title}</h3>
         <p className="mx-auto mt-2 max-w-[26ch] text-sm leading-relaxed text-[var(--ink-muted)]">{tagline}</p>
         {note && (
           <p className="mt-2 text-[11px] font-semibold uppercase tracking-wide" style={{ color: accent ?? "var(--accent)" }}>

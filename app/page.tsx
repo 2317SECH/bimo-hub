@@ -3,6 +3,7 @@ import { Reveal } from "@/components/Reveal";
 import { Founders } from "@/components/Founders";
 import { SoundToggle } from "@/components/SoundToggle";
 import { EcosystemSection } from "@/components/EcosystemSection";
+import { ContactSection } from "@/components/ContactSection";
 
 /** Página principal del ecosistema BIMO -- capa de marca que conecta las
  * 3 divisiones (Shop / Copy / Studios), cada una independiente, sin
@@ -18,63 +19,76 @@ export default function Home() {
       <SoundToggle />
 
       {/* ============ HERO -- BIMO raíz, dorado ============ */}
-      <section className="relative flex min-h-[92vh] flex-col items-center justify-center gap-7 overflow-hidden px-6 text-center">
+      <section className="relative flex min-h-screen flex-col items-center justify-center gap-9 overflow-hidden px-6 text-center">
         <div className="hero-ambient">
           <div className="hero-grid" />
+          <div className="bg-particles">
+            <span /><span /><span /><span />
+          </div>
         </div>
 
-        <div className="relative flex items-center justify-center">
-          <span className="orbit-ring r2" />
-          <span className="orbit-ring r1" />
-          <Mascot size={210} interactive />
-        </div>
+        <Reveal delay={0}>
+          <div className="relative flex items-center justify-center">
+            <span className="orbit-ring r2" />
+            <span className="orbit-ring r1" />
+            <Mascot size={240} interactive />
+          </div>
+        </Reveal>
 
-        <h1 className="wordmark display flex text-6xl leading-none sm:text-7xl">
-          B
-          <span className="i">
-            <span className="dot" />
-            <span className="stem" />
-          </span>
-          MO
-        </h1>
-        <p className="max-w-lg text-lg text-[var(--ink-muted)]">
-          Un ecosistema de tecnología inteligente — comercio, automatización e inteligencia artificial, construidos
-          con el mismo criterio.
-        </p>
-        <a
-          href="#ecosistema"
-          className="mt-2 flex flex-col items-center gap-2 text-sm text-[var(--ink-muted)] transition-colors hover:text-[var(--ink)]"
-        >
-          <span>Conoce el ecosistema</span>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="animate-bounce">
-            <path
-              d="M3 6L8 11L13 6"
-              stroke="var(--accent)"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </a>
+        <Reveal delay={0.12}>
+          <h1 className="wordmark display flex text-6xl leading-none sm:text-7xl">
+            B
+            <span className="i">
+              <span className="dot" />
+              <span className="stem" />
+            </span>
+            MO
+          </h1>
+        </Reveal>
+
+        <Reveal delay={0.22}>
+          <div className="flex flex-col items-center gap-3">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
+              IA · Automatización · Comercio · Software
+            </span>
+            <p className="max-w-md text-lg text-[var(--ink)]">Tecnología con intención.</p>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.34}>
+          <a
+            href="#ecosistema"
+            className="mt-2 flex flex-col items-center gap-2 text-sm text-[var(--ink-muted)] transition-colors hover:text-[var(--ink)]"
+          >
+            <span>Conoce el ecosistema</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="animate-bounce">
+              <path
+                d="M3 6L8 11L13 6"
+                stroke="var(--accent)"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </a>
+        </Reveal>
       </section>
 
       {/* ============ QUE ES BIMO ============ */}
-      <section className="relative mx-auto max-w-2xl overflow-hidden px-6 py-24 text-center">
+      <section className="relative mx-auto max-w-2xl overflow-hidden px-6 py-28 text-center">
         <div className="section-glow" />
         <Reveal chime={[[392.0, 0], [587.33, 0.1]]}>
           <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--accent)]">Qué es BIMO</span>
         </Reveal>
         <Reveal delay={0.08}>
-          <h2 className="display mt-4 text-3xl text-[var(--ink)] sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-[var(--ink)] sm:text-4xl">
             Una empresa que construye tecnología
           </h2>
         </Reveal>
         <Reveal delay={0.16}>
           <p className="mt-5 text-base leading-relaxed text-[var(--ink-muted)]">
-            BIMO es un ecosistema tecnológico que crea productos, sistemas inteligentes y automatizaciones mediante
-            inteligencia artificial. Desarrolla comercio digital, automatización, bots inteligentes, sistemas de
-            análisis y herramientas tecnológicas — cada división resuelve un problema distinto, pero todas comparten
-            la misma disciplina: observar, construir, medir y mejorar.
+            Creamos productos, sistemas inteligentes y automatizaciones con IA. Comercio, trading, bots — cada
+            división resuelve algo distinto, todas comparten la misma disciplina.
           </p>
         </Reveal>
       </section>
@@ -86,10 +100,15 @@ export default function Home() {
         <Founders />
       </div>
 
+      <ContactSection />
+
       {/* ============ FOOTER ============ */}
-      <footer className="border-t border-[var(--rule)] px-6 py-12 text-center">
+      <footer className="border-t border-[var(--rule)] px-6 py-16 text-center">
         <Mascot size={48} className="mx-auto" />
-        <p className="mt-4 text-xs text-[var(--ink-faint)]">© {new Date().getFullYear()} BIMO. Todos los derechos reservados.</p>
+        <p className="mt-4 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--ink-faint)]">
+          Tecnología con intención.
+        </p>
+        <p className="mt-2 text-xs text-[var(--ink-faint)]">© {new Date().getFullYear()} BIMO. Todos los derechos reservados.</p>
       </footer>
     </main>
   );

@@ -45,21 +45,23 @@ export function EcosystemSection() {
   return (
     <>
       {/* ============ ECOSISTEMA ============ */}
-      <section id="ecosistema" className="relative mx-auto max-w-5xl overflow-hidden px-6 py-16">
+      <section id="ecosistema" className="relative mx-auto max-w-5xl overflow-hidden px-6 py-28">
         <div className="section-glow" />
         <Reveal chime={[[523.25, 0], [783.99, 0.12]]}>
           <div className="text-center">
             <span className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--accent)]">El ecosistema</span>
-            <h2 className="display mt-4 text-3xl text-[var(--ink)] sm:text-4xl">Tres divisiones, una raíz</h2>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-[var(--ink)] sm:text-4xl">
+              Tres divisiones, una raíz
+            </h2>
           </div>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-3">
+        <div className="mt-16 grid gap-8 sm:grid-cols-3">
           <Reveal delay={0.05}>
             <DivisionCard
               title="BIMO Shop"
-              tagline="Productos inteligentes diseñados para mejorar tu experiencia diaria. Catálogo elegante, compra premium."
-              note="Catálogo en rotación — nuevas piezas cada 1 a 2 semanas"
+              tagline="Catálogo curado para tu día a día."
+              note="Nuevas piezas cada 1 a 2 semanas"
               href={BIMO_SHOP_URL}
               external
               {...SHOP_ACCENT}
@@ -68,7 +70,7 @@ export function EcosystemSection() {
           <Reveal delay={0.1}>
             <DivisionCard
               title="BIMO Copy"
-              tagline="Un sistema inteligente de automatización y análisis para trading y ejecución basada en datos."
+              tagline="Trading automatizado, basado en datos."
               href={BIMO_COPY_URL}
               external
               {...COPY_ACCENT}
@@ -77,7 +79,7 @@ export function EcosystemSection() {
           <Reveal delay={0.15}>
             <DivisionCard
               title="BIMO Studios"
-              tagline="Construimos bots, inteligencia artificial y automatizaciones para empresas."
+              tagline="Bots e IA a medida para empresas."
               onClick={openStudios}
               actionLabel={studiosOpen ? "Ocultar ←" : "Ver más →"}
               {...STUDIOS_ACCENT}
@@ -105,12 +107,12 @@ export function EcosystemSection() {
               <span className="mt-6 block text-xs font-bold uppercase tracking-[0.16em] text-[var(--accent)]">
                 BIMO Studios
               </span>
-              <h2 className="display mt-4 text-3xl text-[var(--ink)] sm:text-4xl">
-                BIMO crea tecnología inteligente para el futuro
+              <h2 className="mt-4 text-3xl font-bold tracking-tight text-[var(--ink)] sm:text-4xl">
+                Tecnología inteligente para el futuro
               </h2>
               <p className="mt-5 text-base leading-relaxed text-[var(--ink-muted)]">
-                La misma disciplina de ingeniería que ya construyó BIMO Shop y BIMO Copy, ahora disponible para
-                empresas y proyectos que necesitan bots, inteligencia artificial y automatización a medida.
+                La misma disciplina que construyó Shop y Copy, ahora para empresas que necesitan bots, IA y
+                automatización a medida.
               </p>
 
               <p className="mt-8 text-xs uppercase tracking-wide text-[var(--ink-faint)]">Lo que hacemos</p>
@@ -149,15 +151,12 @@ export function EcosystemSection() {
               </div>
 
               <a
-                href="mailto:sergioquinterop996@gmail.com"
+                href="#contacto"
                 className="mt-10 inline-block rounded-full border px-7 py-3 text-sm font-semibold text-[var(--ink)] transition-colors"
                 style={{ borderColor: "var(--accent)", background: "rgba(176, 127, 255, 0.12)" }}
               >
-                ¿Querés crear una solución tecnológica para tu empresa?
+                ¿Querés crear algo con nosotros?
               </a>
-              <p className="mt-4 text-xs text-[var(--ink-faint)]">
-                sergioquinterop996@gmail.com · +57 313 668 2674
-              </p>
             </div>
           </motion.section>
         )}
